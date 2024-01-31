@@ -9,3 +9,5 @@ reg add "HKEY_CURRENT_USER\Control Panel\Cursors" /ve /t "REG_SZ" /d "Windows Bl
 
 rem マウスポインターのサイズを変更
 reg add "HKEY_CURRENT_USER\Control Panel\Cursors" /v "CursorBaseSize" /t "REG_DWORD" /d "0x00000030" /f
+
+pause

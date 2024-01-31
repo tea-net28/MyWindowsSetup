@@ -9,3 +9,5 @@ reg add "HKEY_CURRENT_USER\Control Panel\Keyboard" /v "PrintScreenKeyForSnipping
 
 rem ON にする場合は以下
 rem reg add "HKEY_CURRENT_USER\Control Panel\Keyboard" /v "PrintScreenKeyForSnippingEnabled" /t "REG_DWORD" /d "0x00000001"
+
+pause
