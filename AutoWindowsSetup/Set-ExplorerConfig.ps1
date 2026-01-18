@@ -48,7 +48,5 @@ Set-ItemProperty -Path $AdvancedPath -Name "HideFileExt" -Value 0
 Write-Host "設定を反映するためにエクスプローラーを再起動します..." -ForegroundColor Yellow
 Stop-Process -Name explorer -Force
 
-Write-Host "完了しました。" -ForegroundColor Green
 Start-Sleep -Seconds 2
-
-Pause
+Write-Host "完了しました。" -ForegroundColor Green
