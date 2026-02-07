@@ -14,7 +14,7 @@
 $ExplorerPath  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer"
 $AdvancedPath  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 
-[Logger]::Info("フォルダーオプションの設定を変更しています...")
+[Logger]::Info("===== フォルダーオプションの設定を変更しています... =====")
 
 # === 全体タブ ===
 # 開いたときの最初のページを PC にする
@@ -52,4 +52,4 @@ Set-ItemProperty -Path $AdvancedPath -Name "HideFileExt" -Value 0
 [CommonUtil]::RestartExplorer()
 
 Start-Sleep -Seconds 2
-[Logger]::Success("◆◆◆ エクスプローラー設定の適用処理が完了しました ◆◆◆")
+[Logger]::Success("===== エクスプローラー設定の適用処理が完了しました =====")

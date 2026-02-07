@@ -7,7 +7,7 @@
 # レジストリパスの定義
 $CLSIDPath = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32"
 
-[Logger]::Info("コンテキストメニューを従来のスタイルに戻しています...")
+[Logger]::Info("===== コンテキストメニューを従来のスタイルに戻しています... =====")
 
 # レジストリキーの作成
 If (-Not (Test-Path $CLSIDPath)) {
@@ -24,4 +24,4 @@ Set-ItemProperty -Path $CLSIDPath -Name "(default)" -Value ""
 # --- 設定反映 (エクスプローラーの再起動) ---
 [CommonUtil]::RestartExplorer()
 
-[Logger]::Success("◆◆◆ コンテキストメニューの設定変更が完了しました ◆◆◆")
+[Logger]::Success("===== コンテキストメニューの設定変更が完了しました =====")

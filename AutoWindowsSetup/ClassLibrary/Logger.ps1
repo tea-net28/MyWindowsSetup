@@ -29,6 +29,7 @@ class Logger {
     static [void] Write([string]$Message, [string]$Type, [bool]$ShowTimestamp) {
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         $color = switch ($Type) {
+            "Info" { "Cyan" }
             "Success" { "Green" }
             "Error" { "Red" }
             "Warning" { "Yellow" }
@@ -39,6 +40,9 @@ class Logger {
         Write-Host "$prefix$Message" -ForegroundColor $color
     }
 
+    static [void] Write([string]$Message) {
+        [Logger]::Write($Message, "White")
+    }
     static [void] Info([string]$Message) {
         [Logger]::Write($Message, "Info")
     }

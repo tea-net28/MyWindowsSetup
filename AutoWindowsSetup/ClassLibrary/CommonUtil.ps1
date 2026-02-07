@@ -95,7 +95,7 @@ class CommonUtil {
     static [bool] EnsureRegistryPath([string]$Path, [bool]$ShowMessage) {
         if (-not (Test-Path $Path)) {
             if ($ShowMessage) {
-                [Logger]::Info("レジストリパスを作成します: $Path")
+                [Logger]::Write("レジストリパスを作成します: $Path")
             }
             New-Item -Path $Path -Force | Out-Null
             return $true

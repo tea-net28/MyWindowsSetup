@@ -12,7 +12,7 @@ $FolderPathPrefix = "E:\_WindowsFolder"
 # レジストリパス
 $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
 
-[Logger]::Info("個人用フォルダーの場所を変更します...")
+[Logger]::Info("===== 個人用フォルダーの場所を変更します... =====")
 
 # デスクトップ
 New-ItemProperty -Path $RegPath -Name "Desktop" -Value "$FolderPathPrefix\Desktop" -PropertyType "ExpandString" -Force | Out-Null
@@ -32,4 +32,4 @@ New-ItemProperty -Path $RegPath -Name "Favorites" -Value "$FolderPathPrefix\Favo
 # --- 設定反映 (エクスプローラーの再起動) ---
 [CommonUtil]::RestartExplorer()
 
-[Logger]::Success("◆◆◆ 個人用フォルダーの場所変更が完了しました ◆◆◆")
+[Logger]::Success("===== 個人用フォルダーの場所変更が完了しました =====")
