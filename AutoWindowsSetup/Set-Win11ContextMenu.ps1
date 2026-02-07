@@ -1,9 +1,13 @@
 ﻿# Windows 11 で変わったコンテキストメニューを従来のスタイルに戻すスクリプト
 
+# 共通ライブラリの読み込み
+. "$PSScriptRoot\ClassLibrary\Logger.ps1"
+. "$PSScriptRoot\ClassLibrary\CommonUtil.ps1"
+
 # レジストリパスの定義
 $CLSIDPath = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32"
 
-Write-Host "コンテキストメニューを従来のスタイルに戻しています..." -ForegroundColor Cyan
+[Logger]::Info("コンテキストメニューを従来のスタイルに戻しています...")
 
 # レジストリキーの作成
 If (-Not (Test-Path $CLSIDPath)) {
@@ -18,8 +22,6 @@ Set-ItemProperty -Path $CLSIDPath -Name "(default)" -Value ""
 
 
 # --- 設定反映 (エクスプローラーの再起動) ---
-Write-Host "設定を反映するためにエクスプローラーを再起動します..." -ForegroundColor Yellow
-Stop-Process -Name explorer -Force
+[CommonUtil]::RestartExplorer()
 
-Start-Sleep -Seconds 2
-Write-Host "完了しました。" -ForegroundColor Green
+[Logger]::Success("◆◆◆ コンテキストメニューの設定変更が完了しました ◆◆◆")

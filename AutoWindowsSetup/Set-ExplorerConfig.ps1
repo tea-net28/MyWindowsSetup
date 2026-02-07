@@ -6,11 +6,15 @@
     設定後にexplorer.exeを再起動します。
 #>
 
+# 共通ライブラリの読み込み
+. "$PSScriptRoot\ClassLibrary\Logger.ps1"
+. "$PSScriptRoot\ClassLibrary\CommonUtil.ps1"
+
 # レジストリパスの定義
 $ExplorerPath  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer"
 $AdvancedPath  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 
-Write-Host "フォルダーオプションの設定を変更しています..." -ForegroundColor Cyan
+[Logger]::Info("フォルダーオプションの設定を変更しています...")
 
 # === 全体タブ ===
 # 開いたときの最初のページを PC にする
@@ -45,8 +49,7 @@ Set-ItemProperty -Path $AdvancedPath -Name "HideFileExt" -Value 0
 
 
 # --- 設定反映 (エクスプローラーの再起動) ---
-Write-Host "設定を反映するためにエクスプローラーを再起動します..." -ForegroundColor Yellow
-Stop-Process -Name explorer -Force
+[CommonUtil]::RestartExplorer()
 
 Start-Sleep -Seconds 2
-Write-Host "完了しました。" -ForegroundColor Green
+[Logger]::Success("◆◆◆ エクスプローラー設定の適用処理が完了しました ◆◆◆")

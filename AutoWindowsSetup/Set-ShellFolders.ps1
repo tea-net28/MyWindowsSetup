@@ -1,15 +1,18 @@
 ﻿# Windows のシェルフォルダーの場所を変更するスクリプト
 
+# 共通ライブラリの読み込み
+. "$PSScriptRoot\ClassLibrary\Logger.ps1"
+. "$PSScriptRoot\ClassLibrary\CommonUtil.ps1"
+
 # 新しいフォルダーのパスの共通部分
 $FolderPathPrefix = "E:\_WindowsFolder"
 # もとの場所に戻す場合は以下を使用
 # $FolderPathPrefix = "%USERPROFILE%"
 
-
 # レジストリパス
 $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
 
-Write-Host "個人用フォルダーの場所を変更します..." -ForegroundColor Cyan
+[Logger]::Info("個人用フォルダーの場所を変更します...")
 
 # デスクトップ
 New-ItemProperty -Path $RegPath -Name "Desktop" -Value "$FolderPathPrefix\Desktop" -PropertyType "ExpandString" -Force | Out-Null
@@ -27,8 +30,6 @@ New-ItemProperty -Path $RegPath -Name "{374DE290-123F-4565-9164-39C4925E467B}" -
 New-ItemProperty -Path $RegPath -Name "Favorites" -Value "$FolderPathPrefix\Favorites" -PropertyType "ExpandString" -Force | Out-Null
 
 # --- 設定反映 (エクスプローラーの再起動) ---
-Write-Host "設定を反映するためにエクスプローラーを再起動します..." -ForegroundColor Yellow
-Stop-Process -Name explorer -Force
+[CommonUtil]::RestartExplorer()
 
-Start-Sleep -Seconds 2
-Write-Host "完了しました。" -ForegroundColor Green
+[Logger]::Success("◆◆◆ 個人用フォルダーの場所変更が完了しました ◆◆◆")
